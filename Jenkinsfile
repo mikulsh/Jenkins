@@ -14,7 +14,12 @@ pipeline {
                 sh "mvn package"
             }
         }
-        stage('sonarqube') {
+        stage('Cobertura Report') {
+            steps {
+                sh "mvn cobertura:cobertura"
+            }
+        }
+        stage('Sonarqube:- Static code Analyzer') {
             steps {
                 withSonarQubeEnv('sonarQube') {
                     sh "mvn sonar:sonar"
